@@ -1,0 +1,6 @@
+-- submit controller✔️
+-- queryExecution controller✔️
+-- login controller
+-- user controller
+-- admin controller ( specific to different app_data schema related activities )✔️
+-- challenges-controller ✔️
