@@ -17,7 +17,7 @@ app.set('view engine', 'jade');
 app.use(cors(
   {
 // Replace this with your exact Frontend URL (no trailing slash!)
-  origin: 'http://localhost:5173', 
+  origin: 'https://seslectstar.web.app', 
   credentials: true, // This allows the 'Set-Cookie' header to pass through
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']    
