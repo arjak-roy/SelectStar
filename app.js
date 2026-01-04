@@ -14,7 +14,15 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors());
+app.use(cors(
+  {
+// Replace this with your exact Frontend URL (no trailing slash!)
+  origin: 'http://localhost:5173', 
+  credentials: true, // This allows the 'Set-Cookie' header to pass through
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']    
+  }
+));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

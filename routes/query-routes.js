@@ -5,8 +5,8 @@ const { validateSQL } = require('../middleware/query-validation');
 const challengesController = require('../controllers/challenges-controller');
 const adminController = require('../controllers/admin-controller');
 const metadataController = require('../controllers/metadata-controller');
-
-
+const authController = require('../controllers/auth');
+const verifyToken = require('../middleware/verify-token');
 
 // for retieving challenges
 // 1. Sorting by difficulty
@@ -20,10 +20,10 @@ router.get('/api/challenges', challengesController.getChallenges);
 
 
 //for executing user-submitted SQL queries
-router.post('/api/query', validateSQL, queryExecutor.executeQuery);
+router.post('/api/query', verifyToken, validateSQL, queryExecutor.executeQuery);
 
 //for executing user-submitted SQL queries
-router.post('/api/check/:id', validateSQL, queryExecutor.checkSolution);    
+router.post('/api/check/:id',verifyToken , validateSQL, queryExecutor.checkSolution);    
 
 // Admin routes
 router.post('/admin/create-challenge-table', adminController.createNewChallengeTable);
@@ -36,5 +36,9 @@ router.post('/admin/query-execution', adminController.adminqueryExecution);
 // Metadata route
 router.post('/api/metadata/columns', metadataController.getColumnInfo);
 
-
+//Auth routes
+router.post('/api/login', authController.login);
+router.post('/api/signup', authController.signup);
+router.post('/api/logout', authController.logout);
+router.get('/api/getme', verifyToken, authController.getMe);
 module.exports = router;
