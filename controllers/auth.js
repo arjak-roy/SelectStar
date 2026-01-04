@@ -36,7 +36,7 @@ const login = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true, // Prevents XSS (JavaScript cannot access this)
     //   secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-      sameSite: 'Lax', // Protects against CSRF
+    //   sameSite: 'Lax', // Protects against CSRF
       maxAge: 24 * 60 * 60 * 1000 // 1 day
     });
     console.log(res.cookie);
@@ -87,7 +87,7 @@ const signup = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true, // Prevents XSS (JavaScript cannot access this)
     //   secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-      sameSite: 'Lax', // Protects against CSRF
+    //   sameSite: 'Lax', // Protects against CSRF
       maxAge: 24 * 60 * 60 * 1000 // 1 day
     });
 
