@@ -14,19 +14,20 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors(
-  {
-// Replace this with your exact Frontend URL (no trailing slash!)
+app.use(cors({
+  // Protocol (https://) is MANDATORY here
   origin: [
-    'seslectstar.web.app',
-    'seslectstar.firebaseapp.com',
-    'localhost:5173'
+    'https://seslectstar.web.app',
+    'https://seslectstar.firebaseapp.com',
+    'http://localhost:5173'
   ], 
-  credentials: true, // This allows the 'Set-Cookie' header to pass through
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Added OPTIONS for preflight
   allowedHeaders: ['Content-Type', 'Authorization']    
-  }
-));
+}));
+
+// Add this right after the cors middleware to handle "Preflight" requests specifically
+app.options('*', cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
