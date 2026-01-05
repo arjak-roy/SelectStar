@@ -27,7 +27,7 @@ app.use(cors({
 }));
 
 // Add this right after the cors middleware to handle "Preflight" requests specifically
-app.options('*', cors());
+app.options('/*splat', cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

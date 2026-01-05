@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const e = require('express');
 const pool = require('../config/db').client;
 
 const login = async (req, res) => {
@@ -7,6 +8,7 @@ const login = async (req, res) => {
 
   try {
     // 1. Find user by email
+    console.log(email);
     const result = await pool.query('SELECT * FROM app_data.users WHERE email = $1', [email]);
     const user = result.rows[0];
     console.log(user);
@@ -36,23 +38,18 @@ const login = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true, // Prevents XSS (JavaScript cannot access this)
       secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-      sameSite: 'None', // Protects against CSRF
-      maxAge: 24 * 60 * 60 * 1000 // 1 day
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      sameSite: 'None'
     });
     console.log(res.cookie);
     res.json({ 
       message: "Login successful", 
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        role: user.role
-      }
+      user: { id: user.id, username: user.username, email: user.email, role: user.role }
     });
     console.log(res.json);
 
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: err.message });
   }
 };
 
