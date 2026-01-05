@@ -17,7 +17,11 @@ app.set('view engine', 'jade');
 app.use(cors(
   {
 // Replace this with your exact Frontend URL (no trailing slash!)
-  origin: 'https://seslectstar.web.app', 
+  origin: [
+    'seslectstar.web.app',
+    'seslectstar.firebaseapp.com',
+    'localhost:5173'
+  ], 
   credentials: true, // This allows the 'Set-Cookie' header to pass through
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']    
