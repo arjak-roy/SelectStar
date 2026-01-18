@@ -6,6 +6,7 @@ const challengesController = require('../controllers/challenges-controller');
 const adminController = require('../controllers/admin-controller');
 const metadataController = require('../controllers/metadata-controller');
 const authController = require('../controllers/auth');
+const userController = require('../controllers/user-controller');
 const verifyToken = require('../middleware/verify-token');
 
 // for retieving challenges
@@ -42,3 +43,7 @@ router.post('/api/signup', authController.signup);
 router.post('/api/logout', authController.logout);
 router.get('/api/getme', verifyToken, authController.getMe);
 module.exports = router;
+
+//user routes
+router.get('/api/getUser/:id',verifyToken ,userController.getUser);
+router.get('/api/user/progress/:id',verifyToken ,userController.getuserProgress);

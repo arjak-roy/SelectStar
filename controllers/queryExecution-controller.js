@@ -5,6 +5,7 @@ const adminPool = require('../config/db').client;
 const checkSolution = async (req, res) => {
   let stdpool, client;
   const  challengeId  = req.params.id;
+  const  user  = req.user;
 
   try {
     stdpool = await studentpool.connect();
@@ -49,6 +50,7 @@ const checkSolution = async (req, res) => {
     const isCorrect = JSON.stringify(expected.rows) === JSON.stringify(actual.rows);
 
     if (isCorrect) {
+      await client.query('INSERT INTO app_data.user_progress (user_id, challenge_id,submitted_sql) VALUES ($1, $2, $3)', [user.id, challengeId, sql]);
         return res.status(200).json({ 
             success: true, 
             message: "Perfect! You solved the challenge.",
