@@ -95,7 +95,13 @@ const signup = async (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token',
+    {
+      httpOnly: true, // Prevents XSS (JavaScript cannot access this)
+      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+      sameSite: 'None', // Protects against CSRF
+    }
+   );
   res.json({ message: "Logged out successfully" });
 };
 
