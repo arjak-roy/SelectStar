@@ -5,63 +5,63 @@
 
 ### ✨ Key Features
 * **Interactive Query Playground:** Real-time SQL execution with dynamic result visualization 💻.
-* [cite_start]**Advanced Security:** Industrial-grade **Schema Isolation** and **Role-Based Access Control (RBAC)**[cite: 55].
-* [cite_start]**Challenge-Based Learning:** A curated set of SQL tasks ranging from basic filtering to complex joins[cite: 193].
-* [cite_start]**Stateless Session Management:** Secure user authentication powered by **JWT**[cite: 45].
+* **Advanced Security:** Industrial-grade **Schema Isolation** and **Role-Based Access Control (RBAC)**.
+* **Challenge-Based Learning:** A curated set of SQL tasks ranging from basic filtering to complex joins.
+* **Stateless Session Management:** Secure user authentication powered by **JWT**.
 
 ---
 
 ## 🛠️ 2. Technical Stack
 The platform utilizes a modern, distributed architecture to ensure scalability and performance:
-* [cite_start]**Frontend:** React.js for a responsive, dynamic UI[cite: 48].
-* [cite_start]**Backend:** Node.js & Express 5 for robust server-side logic and routing[cite: 50, 51].
-* [cite_start]**Authentication:** Stateless JSON Web Tokens (JWT) for secure authorization[cite: 52].
-* [cite_start]**Database:** PostgreSQL (Multi-schema architecture)[cite: 54].
-* [cite_start]**Infrastructure:** **Docker & Docker Compose** for seamless containerization and environment parity[cite: 32].
+* **Frontend:** React.js for a responsive, dynamic UI.
+* **Backend:** Node.js & Express 5 for robust server-side logic and routing.
+* **Authentication:** Stateless JSON Web Tokens (JWT) for secure authorization.
+* **Database:** PostgreSQL (Multi-schema architecture).
+* **Infrastructure:** **Docker & Docker Compose** for seamless containerization and environment parity.
 
 ---
 
 ## 🗄️ 3. Database Architecture
-[cite_start]The relational schema is meticulously designed to support multi-tenancy while maintaining strict data privacy through **Row-Level Security (RLS)**[cite: 30].
+The relational schema is meticulously designed to support multi-tenancy while maintaining strict data privacy through **Row-Level Security (RLS)**.
 
 ### 🗝️ Core Data Entities
-* [cite_start]**`users`:** Manages secure profiles with hashed credentials[cite: 86, 89].
-* [cite_start]**`challenges`:** Stores the curriculum, difficulty levels, and hidden solution logic[cite: 57, 65, 66].
-* [cite_start]**`user_progress`:** Tracks submissions and validates completed milestones[cite: 79, 85].
-* [cite_start]**`table_metadata`:** Drives the dynamic UI by providing structural info about challenge tables[cite: 72, 202].
+* **`users`:** Manages secure profiles with hashed credentials.
+* **`challenges`:** Stores the curriculum, difficulty levels, and hidden solution logic.
+* **`user_progress`:** Tracks submissions and validates completed milestones.
+* **`table_metadata`:** Drives the dynamic UI by providing structural info about challenge tables.
 
 ---
 
 ## 📡 4. API Endpoints
 
 ### 🔐 Authentication
-* [cite_start]`POST /api/signup`: New user registration[cite: 187].
-* [cite_start]`POST /api/login`: Secure authentication and JWT issuance[cite: 188].
-* [cite_start]`GET /api/getme`: Fetching current authenticated profile (Protected)[cite: 189].
+* `POST /api/signup`: New user registration.
+* `POST /api/login`: Secure authentication and JWT issuance.
+* `GET /api/getme`: Fetching current authenticated profile (Protected).
 
 ### ⚡ SQL Execution Engine
-* [cite_start]`POST /api/query`: Executes arbitrary SQL in a restricted sandbox[cite: 198].
-* [cite_start]`POST /api/check/:id`: Validates user solutions using a **Ghost Comparison** algorithm[cite: 199].
+* `POST /api/query`: Executes arbitrary SQL in a restricted sandbox.
+* `POST /api/check/:id`: Validates user solutions using a **Ghost Comparison** algorithm.
 
 ### 🛠️ Admin Services
-* [cite_start]`POST /admin/create-new-challenge`: For defining new relational tasks[cite: 205].
-* [cite_start]`POST /admin/query-execution`: High-privilege debugging and maintenance[cite: 207].
+* `POST /admin/create-new-challenge`: For defining new relational tasks.
+* `POST /admin/query-execution`: High-privilege debugging and maintenance.
 
 ---
 
 ## 🛡️ 5. Security & Middleware Stack
-[cite_start]Security is baked into the request lifecycle via a robust middleware pipeline[cite: 208, 209]:
+Security is baked into the request lifecycle via a robust middleware pipeline:
 
-1.  [cite_start]**`verifyToken`:** Ensures only authorized users access protected resources[cite: 210].
-2.  [cite_start]**`validateSQL`:** A critical gatekeeper that sanitizes raw SQL strings using **Regex filtering** to block destructive commands (e.g., `DROP`, `DELETE`)[cite: 114, 211].
-3.  [cite_start]**CORS/Security:** Managed at the application level to ensure safe cross-origin communication[cite: 212].
+1.  **`verifyToken`:** Ensures only authorized users access protected resources.
+2.  **`validateSQL`:** A critical gatekeeper that sanitizes raw SQL strings using **Regex filtering** to block destructive commands (e.g., `DROP`, `DELETE`).
+3.  **CORS/Security:** Managed at the application level to ensure safe cross-origin communication.
 
 ---
 
 ## 🔄 6. The Validation Workflow (Ghost Comparison)
 To determine if a user's SQL is "Correct," the engine performs the following:
-1.  [cite_start]**Safety Check:** The `validateSQL` middleware screens for security violations[cite: 102].
-2.  [cite_start]**Execution:** The system retrieves the secret `solution_sql`[cite: 122].
-3.  [cite_start]**The Ghost Run:** Both the user's SQL and the solution SQL are executed within a **PostgreSQL Transaction**[cite: 124, 130].
-4.  [cite_start]**Verification:** The resulting JSON datasets are compared for equality[cite: 133].
-5.  [cite_start]**Rollback:** The transaction is **REVERTED**, ensuring user queries never permanently alter the database state[cite: 132].
+1.  **Safety Check:** The `validateSQL` middleware screens for security violations.
+2.  **Execution:** The system retrieves the secret `solution_sql`.
+3.  **The Ghost Run:** Both the user's SQL and the solution SQL are executed within a **PostgreSQL Transaction**.
+4.  **Verification:** The resulting JSON datasets are compared for equality.
+5.  **Rollback:** The transaction is **REVERTED**, ensuring user queries never permanently alter the database state.
