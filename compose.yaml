@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: db123
+      POSTGRES_DB: ****************
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin_pass
     ports:
@@ -20,9 +20,9 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=db
-      - DB_NAME=db123
-      - ADMIN_USER=admin
-      - ADMIN_PASS=admin_pass
-      - STUDENT_USER=selectStar
-      - STUDENT_PASS=pass1234
+      - DB_HOST=**************
+      - DB_NAME=**************
+      - ADMIN_USER=****************
+      - ADMIN_PASS=*****************
+      - STUDENT_USER=******************
+      - STUDENT_PASS=**********************
