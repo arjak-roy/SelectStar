@@ -1,5 +1,5 @@
 # 🌟 SelectStar: Interactive SQL Mastery Platform
-[text](https://seslectstar.web.app/)
+[Live Website Link](https://seslectstar.web.app/)
 ## 📖 1. Project Overview
 **SelectStar** is a high-performance, full-stack learning platform engineered to bridge the gap between theoretical database concepts and practical execution. It provides a **secure, sandboxed environment** where users can execute complex relational queries against a live PostgreSQL instance without compromising system integrity 🛡️.
 
