@@ -65,3 +65,23 @@ To determine if a user's SQL is "Correct," the engine performs the following:
 3.  **The Ghost Run:** Both the user's SQL and the solution SQL are executed within a **PostgreSQL Transaction**.
 4.  **Verification:** The resulting JSON datasets are compared for equality.
 5.  **Rollback:** The transaction is **REVERTED**, ensuring user queries never permanently alter the database state.
+ 
+---
+
+## ⚔️ 7. Battle ready testing with different vulnerable queries:
+
+To ensure that the server returns a ***403 forbidden*** response code to unauthorised queries, we tested it against different queries:
+ ### 1. Destructive Commands (DDL & DML) 🧨
+1. **DROP TABLE users;** — Attempts to delete the core user table.
+2. **DROP SCHEMA app_data CASCADE;** — Attempts to wipe the entire administrative schema.
+3. **DELETE FROM challenges;** — Attempts to erase all available tasks.
+4. **TRUNCATE app_data.user_progress;** — Attempts a high-speed wipe of user history.
+5. **ALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT TRUE;** — Attempts to modify the user schema for privilege escalation.
+
+### 2. Unauthorized Data Modification ✍️
+1. **INSERT INTO app_data.challenges (title, solution_sql) VALUES ('Hacked', 'SELECT 1');** — Attempts to inject a fake challenge.
+2. **UPDATE users SET password_hash = 'new_hash' WHERE username = 'admin';** — Attempts to hijack the admin account.
+
+### 3. Information Extraction (SQL Injection) 🔍
+1. **SELECT name FROM employees UNION SELECT password_hash FROM app_data.users;** — Attempts a classic UNION attack to extract sensitive user hashes.
+2. **SELECT * FROM employees, app_data.users;** — Uses a cross-join to expose hidden table data from the administrative schema.

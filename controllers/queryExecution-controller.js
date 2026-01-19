@@ -29,7 +29,9 @@ const checkSolution = async (req, res) => {
 
     // 3. TRANSACTION START (With Await!)
     await stdpool.query('BEGIN');
-
+    await stdpool.query('SET TRANSACTION READ ONLY');
+    await stdpool.query(`SET LOCAL statement_timeout = '2s' `); // 3 seconds
+    await  stdpool.query('SHOW statement_timeout'); // 1 second
     // Run queries exactly as intended for comparison
     const expected = await stdpool.query(solutionSql);
     const actual = await stdpool.query(sql); // Use raw sql for comparison to match column names
