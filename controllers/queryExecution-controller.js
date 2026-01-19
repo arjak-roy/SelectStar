@@ -50,7 +50,7 @@ const checkSolution = async (req, res) => {
     const isCorrect = JSON.stringify(expected.rows) === JSON.stringify(actual.rows);
 
     if (isCorrect) {
-      await client.query('INSERT INTO app_data.user_progress (user_id, challenge_id,submitted_sql) VALUES ($1, $2, $3) ON CONFLICT DO UPDATE SET submitted_sql = EXCLUDED.submitted_sql, completed_at = now() ', [user.id, challengeId, sql]);
+      await client.query('INSERT INTO app_data.user_progress (user_id, challenge_id,submitted_sql) VALUES ($1, $2, $3) ON CONFLICT(user_id, challenge_id) DO UPDATE SET submitted_sql = EXCLUDED.submitted_sql, completed_at = now() ', [user.id, challengeId, sql]);
         return res.status(200).json({ 
             success: true, 
             message: "Perfect! You solved the challenge.",
