@@ -67,8 +67,11 @@ To determine if a user's SQL is "Correct," the engine performs the following:
 5.  **Rollback:** The transaction is **REVERTED**, ensuring user queries never permanently alter the database state.
  
 ---
+## Sequence diagram
+<img width="941" height="1120" alt="Seq" src="https://github.com/user-attachments/assets/50b087d7-cda5-4c57-9422-3812e25fb81c" />
+---
 
-## ⚔️ 7. Battle ready testing with different vulnerable queries:
+## ⚔️ 8. Battle ready testing with different vulnerable queries:
 
 To ensure that the server returns a ***403 forbidden*** response code to unauthorised queries, we tested it against different queries:
  ### 1. Destructive Commands (DDL & DML) 🧨
