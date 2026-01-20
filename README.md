@@ -14,6 +14,7 @@
 ## 🏠 Project structure:
 
 **SelectStar**
+```
 ├── Dockerfile
 ├── app.js 
 ├── bin
@@ -41,7 +42,7 @@
 │   └── query-routes.js
 ├── init-sandbox.sql
 ├── initusersql.sql
-
+```
 ---
 
 ## 🛠️ 2. Technical Stack
