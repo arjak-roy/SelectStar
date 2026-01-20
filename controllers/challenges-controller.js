@@ -10,7 +10,7 @@ const getChallenges = async (req, res) => {
         const result = await clnt.query(
             'SELECT id, title, description, difficulty, category FROM app_data.challenges ORDER BY id ASC'
         );
-        console.log(result.rows);
+        // console.log(result.rows);
         
         res.status(200).json(result.rows);
     } catch (err) {

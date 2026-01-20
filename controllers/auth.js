@@ -11,7 +11,7 @@ const login = async (req, res) => {
     console.log(email);
     const result = await pool.query('SELECT * FROM app_data.users WHERE email = $1', [email]);
     const user = result.rows[0];
-    console.log(user);
+    // console.log(user);
 
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials" });
@@ -19,7 +19,7 @@ const login = async (req, res) => {
 
     // 2. Compare incoming password with the stored hash
     const isMatch = await bcrypt.compare(password, user.password_hash);
-    console.log(isMatch);
+    // console.log(isMatch);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid Credentials" });
     }
@@ -32,7 +32,7 @@ const login = async (req, res) => {
       { expiresIn: '24h' }
     );
 
-    console.log(token);
+    // console.log(token);
 
     // 4. Send token in an HttpOnly Cookie
     res.cookie('token', token, {
@@ -41,12 +41,12 @@ const login = async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       sameSite: 'None'
     });
-    console.log(res.cookie);
+      // console.log(res.cookie);
     res.json({ 
       message: "Login successful", 
       user: { id: user.id, username: user.username, email: user.email, role: user.role }
     });
-    console.log(res.json);
+    // console.log(res.json);
 
   } catch (err) {
     res.status(500).json({ message: err.message });
