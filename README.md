@@ -8,6 +8,39 @@
 * **Advanced Security:** Industrial-grade **Schema Isolation** and **Role-Based Access Control (RBAC)**.
 * **Challenge-Based Learning:** A curated set of SQL tasks ranging from basic filtering to complex joins.
 * **Stateless Session Management:** Secure user authentication powered by **JWT**.
+* **Rate limiting using token bucket stratergy** prevents Ddos attacks ans prevents api exploits using Redis.
+* **Implemented an optional fixed window rate limiting stratergy** 
+
+## 🏠 Project structure:
+
+**SelectStar**
+├── Dockerfile
+├── app.js 
+├── bin
+│   └── www
+├── compose.yaml
+├── config
+│   ├── db.js
+│   └── redis.js
+├── controllers
+│   ├── admin-controller.js
+│   ├── auth.js
+│   ├── challenges-controller.js
+│   ├── metadata-controller.js
+│   ├── queryExecution-controller.js
+│   ├── todo.txt
+│   └── user-controller.js
+├── lib
+│   ├── rate-limiter-fixed-window.js
+│   └── rate-limiter-tocken-bucket.js
+├── middleware
+│   ├── query-validation.js
+│   ├── ratelimiter.js
+│   └── verify-token.js
+├── routes
+│   └── query-routes.js
+├── init-sandbox.sql
+├── initusersql.sql
 
 ---
 
@@ -17,6 +50,7 @@ The platform utilizes a modern, distributed architecture to ensure scalability a
 * **Backend:** Node.js & Express 5 for robust server-side logic and routing.
 * **Authentication:** Stateless JSON Web Tokens (JWT) for secure authorization.
 * **Database:** PostgreSQL (Multi-schema architecture).
+* **Rate limiting** Redis & Token bucket stratergy.
 * **Infrastructure:** **Docker & Docker Compose** for seamless containerization and environment parity.
 
 ---
