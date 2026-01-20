@@ -9,11 +9,12 @@
 * **Challenge-Based Learning:** A curated set of SQL tasks ranging from basic filtering to complex joins.
 * **Stateless Session Management:** Secure user authentication powered by **JWT**.
 * **Rate limiting using token bucket stratergy** prevents Ddos attacks ans prevents api exploits using Redis.
-* **Implemented an optional fixed window rate limiting stratergy** 
+* **Implemented an optional fixed window rate limiting strategy** 
 
 ## 🏠 Project structure:
 
 **SelectStar**
+```
 ├── Dockerfile
 ├── app.js 
 ├── bin
@@ -41,7 +42,7 @@
 │   └── query-routes.js
 ├── init-sandbox.sql
 ├── initusersql.sql
-
+```
 ---
 
 ## 🛠️ 2. Technical Stack
